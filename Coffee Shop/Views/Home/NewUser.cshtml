@@ -1,0 +1,27 @@
+﻿<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+@{
+    ViewBag.Title = "NewUser";
+}
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email Address</th>
+        <th>Favorite Coffee</th>
+        <th>Subscription Status</th>
+    </tr>
+    <tr>
+        <td>@ViewBag.FirstName</td>
+        <td>@ViewBag.LastName</td>
+        <td>@ViewBag.Phone</td>
+        <td>@ViewBag.Email</td>
+        <td>@ViewBag.FavCoffee</td>
+        <td>@ViewBag.Subscription</td>
+    </tr>
+</table>
+

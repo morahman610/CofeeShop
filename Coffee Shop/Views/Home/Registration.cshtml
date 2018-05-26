@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+}
+
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+
+<form id="register" action="/Home/NewUser" method="post" onsubmit="return confirmPassword(this)">
+    <fieldset>
+        <legend>Registration Form</legend>
+        <p>First Name* <input type="text" class="input"name="firstName" required /></p>
+        <p>Last Name <input type="text" name="lastName" class="input" /></p>
+        <p>Email <input type="email" name="email" class="input"/></p>
+        <p>Phone Number <input type="number" name="phoneNumber" class="input"/></p>
+        <p>Password <input type="password" name="firstPassword" class="input"/></p>
+        <span id="invalidPass"></span>
+        <p>Confirm Password <input type="password" name="passConf" class="input"/></p>
+        <span id="passNoMatch"></span>
+        <p>Favorite Coffee <input type="text" name="favCoffee" class="input"/></p>
+        <p>Would you like to substribe to our newsletter?<p>
+            Yes <input type="radio" name="subscription" value="Subscribed" id="subsciption_yes" />
+            No  <input type="radio" name="subscription" value="Not Subscribed" id="subsciption_no" />
+        <p><input type="submit" value="SUBMIT" /></p>
+    </fieldset>
+</form>
+
+
+<script>
+
+    function confirmPassword(form) {
+
+        var pass1 = form.firstPassword.value;
+        var pass2 = form.passConf.value;
+
+        if (pass1.length < 5 || pass2.length < 5)
+        {
+            document.getElementById("invalidPass").innerHTML = "Password is too short."
+            return false;
+        }
+
+        else if (pass1 != pass2)
+        {
+            document.getElementById("passNoMatch").innerHTML = "Passwords do not match."
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
+
+<style>
+
+
+</style>
+
