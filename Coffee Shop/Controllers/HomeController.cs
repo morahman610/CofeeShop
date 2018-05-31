@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Coffee_Shop.Models;
 
 namespace Coffee_Shop.Controllers
 {
@@ -10,6 +11,8 @@ namespace Coffee_Shop.Controllers
     {
         public ActionResult Index()
         {
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+            ViewBag.Items = ORM.Items.ToList();
             return View();
         }
 
@@ -32,18 +35,26 @@ namespace Coffee_Shop.Controllers
             return View();
         }
 
-        public ActionResult NewUser(Int64 phoneNumber = 0, string email = null, string firstName = null, string lastName=null, 
-            string password=null, string passConf=null, string favCoffee=null, string subscription = null)
+        public ActionResult NewUser(Item data)
         {
 
-            ViewBag.Phone = phoneNumber;
-            ViewBag.Email = email;
-            ViewBag.FirstName = firstName;
-            ViewBag.LastName = lastName;
-            ViewBag.Password = password;
-            ViewBag.PassConf = passConf;
-            ViewBag.FavCoffee = favCoffee;
-            ViewBag.Subscription = subscription;
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+
+            if(ModelState.IsValid)
+            {
+                ORM.Items.Add(data);
+                ORM.SaveChanges();
+                ViewBag.User = ORM.Users.ToList();
+
+                ViewBag.message = "Registration Sucessful!";
+
+            }
+            else
+            {
+                ViewBag.message = "Invalid onformation entered. Registration is not complete.";
+            }
+
+
 
 
             return View();
