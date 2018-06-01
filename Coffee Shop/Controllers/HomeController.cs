@@ -37,7 +37,7 @@ namespace Coffee_Shop.Controllers
 
         public ActionResult NewUser(Item data)
         {
-
+            
             CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
 
             if(ModelState.IsValid)
