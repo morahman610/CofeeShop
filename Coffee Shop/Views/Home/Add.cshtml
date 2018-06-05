@@ -12,12 +12,12 @@
 
 <ul>
 
+
     @foreach (Item i in (List<Item>)(Session["Cart"]))
 
     {
 
         <li>@i.Name by @i.Price</li>
-
     }
 
 </ul>

@@ -14,18 +14,7 @@
 </form>
 <br />
 
-<form action="~/Home/ItemListByQuantity" method="get">
-    <label>
-        Search by status:
-        <select name="status">
-            @foreach (Item s in ViewBag.Items)
-            {
-                <option value="@s.ProductID">@s.Quantity</option>
-            }
-        </select>
-    </label>
-    <input type="submit" value="Search by Status" class="btn btn-primary" />
-</form>
+
 
 
 <table>
