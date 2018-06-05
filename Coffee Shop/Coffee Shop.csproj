@@ -246,6 +246,8 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Home\Add.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

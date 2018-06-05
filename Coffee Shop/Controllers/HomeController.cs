@@ -16,20 +16,6 @@ namespace Coffee_Shop.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         public ActionResult Registration()
         {
             return View();
@@ -54,10 +40,61 @@ namespace Coffee_Shop.Controllers
                 ViewBag.message = "Invalid onformation entered. Registration is not complete.";
             }
 
+            return View();
+        }
 
-
+        public ActionResult Menu()
+        {
+            CoffeeShopDBEntities ORM = new CoffeeShopDBEntities();
+            List<Item> items = ORM.Items.ToList();
+            ViewBag.Items = items;
 
             return View();
+        }
+
+        public ActionResult Add(int id)
+        {
+            CoffeeShopDBEntities db = new CoffeeShopDBEntities();
+
+            //check if the Cart object already exists
+            if (Session["Cart"] == null)
+            {
+                //if it doesn't, make a new list of books
+                List<Item> cart = new List<Item>();
+                //add this book to it
+                cart.Add((from b in db.Items
+                          where b.ProductID == id
+                          select b).Single());
+                //add the list to the session
+                Session.Add("Cart", cart);
+            }
+            else
+            {
+                //if it does exist, get the list
+                List<Item> cart = (List<Item>)(Session["Cart"]);
+                //add this book to it
+                cart.Add((from b in db.Items
+                          where b.ProductID == id
+                          select b).Single());
+            }
+            return View();
+        }
+
+        public ActionResult ItemListByQuantity(int Quantity)
+        {
+            CoffeeShopDBEntities db = new CoffeeShopDBEntities();
+
+            //LINQ Query
+            List<Item> itemsByQuantity = (from b in db.Items
+
+                                where b.Quantity == Quantity
+
+                                select b).ToList();
+
+            ViewBag.Items = itemsByQuantity;
+
+            return View("Menu");
+
         }
     }
 }
